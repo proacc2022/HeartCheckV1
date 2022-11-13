@@ -9,7 +9,7 @@ const Footer = () => {
       alignItems="center"
       minHeight="10vh"
     >
-      <Typography variant="h6">SEM Team 6</Typography>
+      <Typography variant="h6">Made with ❤️ by Team 6</Typography>
     </Box>
   );
 };

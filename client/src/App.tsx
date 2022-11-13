@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Nav />
-      <Container maxWidth="sm" sx={{ mt: "1rem" }}>
+      <Container maxWidth="sm" sx={{ mt: "2rem" }}>
         <EvalulateForm />
       </Container>
       <Footer />
