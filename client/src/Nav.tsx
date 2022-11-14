@@ -50,7 +50,7 @@ function Nav() {
               textDecoration: "none",
             }}
           >
-            StoneHeart
+            HeartCheck
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -111,7 +111,7 @@ function Nav() {
               textDecoration: "none",
             }}
           >
-            StoneHeart
+            HeartCheck
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navs.map(({ title, url }) => (
