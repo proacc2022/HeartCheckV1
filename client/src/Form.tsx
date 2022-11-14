@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   Grid,
@@ -7,12 +8,14 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Formik } from "formik";
 import { Form } from "formik";
 import SendIcon from "@mui/icons-material/Send";
 import { object, number } from "yup";
 import axios from "axios";
+import { useState } from "react";
 
 const schema = object({
   gender: number().required("Required").integer().moreThan(-1),
@@ -33,21 +36,23 @@ const schema = object({
   heartRate: number().required("Required").positive("Must be positive number"),
 });
 
-const onSubmit = (values: any) => {
-  console.log(values);
-  axios
-    .post("/predict", {
-      values,
-    })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
-
 const EvalulateForm = () => {
+  const [output, setOutput] = useState("");
+
+  const onSubmit = (values: any) => {
+    axios
+      .post("http://127.0.0.1:5000/predict", {
+        values,
+      })
+      .then((res) => {
+        console.log(res.data.output);
+        setOutput(res.data.output);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <div>
       <Formik
@@ -344,7 +349,7 @@ const EvalulateForm = () => {
                   id="glucose-input"
                   label="Average glucose level"
                   variant="outlined"
-                  value={values.heartRate}
+                  value={values.glucose}
                   onChange={handleChange("glucose")}
                   fullWidth
                   error={!!(errors.glucose && touched.glucose)}
@@ -365,6 +370,16 @@ const EvalulateForm = () => {
                 >
                   Submit
                 </Button>
+                {output && (
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    minHeight="10vh"
+                  >
+                    <Typography variant="h6">{output}</Typography>
+                  </Box>
+                )}
               </Grid>
             </Grid>
           </Form>

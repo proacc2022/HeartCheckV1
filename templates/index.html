@@ -1,48 +1,130 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
-<head>
-  <meta charset="UTF-8">
-  <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<html>
+  <!--From https://codepen.io/frytyler/pen/EGdtg-->
+  <head>
+    <meta charset="UTF-8" />
+    <title>ML API</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
 
-</head>
+  <body>
+    <div class="login">
+      <h1>Predict Heart Attack</h1>
 
-<body>
- <div class="login">
-	<h1>Predict Heart Attack</h1>
-
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}" method="POST">
-    	<input type="text" name="gender" placeholder="Gender" required="required" />
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('predict')}}" method="POST">
+        <input
+          type="text"
+          name="gender"
+          placeholder="Gender"
+          required="required"
+        />
         <input type="text" name="age" placeholder="Age" required="required" />
-        <input type="text" name="education" placeholder="Education" required="required" />
-        <input type="text" name="smoker" placeholder="Smoker" required="required" />
-        <input type="text" name="cigsperday" placeholder="Cigs per day" required="required" />
-        <input type="text" name="bpmeds" placeholder="BP Meds" required="required" />
-        <input type="text" name="stroke" placeholder="Previous Stroke" required="required" />
-        <input type="text" name="stress" placeholder="Stress" required="required" />
-        <input type="text" name="diabetes" placeholder="Diabetes" required="required" />
-        <input type="text" name="cholesterol" placeholder="Cholesterol" required="required" />
-        <input type="text" name="sysbp" placeholder="Systolic BP" required="required" />
-        <input type="text" name="diabp" placeholder="Diastolic BP" required="required" />
+        <input
+          type="text"
+          name="education"
+          placeholder="Education"
+          required="required"
+        />
+        <input
+          type="text"
+          name="smoker"
+          placeholder="Smoker"
+          required="required"
+        />
+        <input
+          type="text"
+          name="cigsperday"
+          placeholder="Cigs per day"
+          required="required"
+        />
+        <input
+          type="text"
+          name="bpmeds"
+          placeholder="BP Meds"
+          required="required"
+        />
+        <input
+          type="text"
+          name="stroke"
+          placeholder="Previous Stroke"
+          required="required"
+        />
+        <input
+          type="text"
+          name="stress"
+          placeholder="Stress"
+          required="required"
+        />
+        <input
+          type="text"
+          name="diabetes"
+          placeholder="Diabetes"
+          required="required"
+        />
+        <input
+          type="text"
+          name="cholesterol"
+          placeholder="Cholesterol"
+          required="required"
+        />
+        <input
+          type="text"
+          name="sysbp"
+          placeholder="Systolic BP"
+          required="required"
+        />
+        <input
+          type="text"
+          name="diabp"
+          placeholder="Diastolic BP"
+          required="required"
+        />
         <input type="text" name="bmi" placeholder="BMI" required="required" />
-        <input type="text" name="heartrate" placeholder="Heart Rate" required="required" />
-        <input type="text" name="glucose" placeholder="Glucose" required="required" />
+        <input
+          type="text"
+          name="heartrate"
+          placeholder="Heart Rate"
+          required="required"
+        />
+        <input
+          type="text"
+          name="glucose"
+          placeholder="Glucose"
+          required="required"
+        />
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
+        <button type="submit" class="btn btn-primary btn-block btn-large">
+          Predict
+        </button>
+      </form>
 
-   <br>
-   <br>
-   {{ prediction_text }}
-
- </div>
-
-
-</body>
+      <br />
+      <br />
+      {{ prediction_text }}
+    </div>
+  </body>
 </html>
