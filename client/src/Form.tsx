@@ -11,6 +11,27 @@ import {
 import { Formik } from "formik";
 import { Form } from "formik";
 import SendIcon from "@mui/icons-material/Send";
+import { object, number } from "yup";
+
+const schema = object({
+  gender: number().required("Required").integer().moreThan(-1),
+  age: number().required("Required").positive().integer(),
+  education: number().required("Required").integer().moreThan(-1),
+  smoker: number().required("Required").integer().moreThan(-1),
+  cigs: number().required("Required"),
+  bpMeds: number().required("Required").integer().moreThan(-1),
+  stroke: number().required("Required").integer().moreThan(-1),
+  stress: number().required("Required").integer().moreThan(-1),
+  diabetes: number().required("Required").integer().moreThan(-1),
+  cholesterol: number()
+    .required("Required")
+    .positive("Must be positive number"),
+  sysbp: number().required("Required").positive("Must be positive number"),
+  diabp: number().required("Required").positive("Must be positive number"),
+  bmi: number().required("Required").positive("Must be positive number"),
+  heartRate: number().required("Required").positive("Must be positive number"),
+});
+
 const EvalulateForm = () => {
   return (
     <div>
@@ -34,8 +55,9 @@ const EvalulateForm = () => {
         onSubmit={(values) => {
           console.log(values);
         }}
+        validationSchema={schema}
       >
-        {({ values, handleChange, setFieldValue }) => (
+        {({ values, handleChange, setFieldValue, errors, touched }) => (
           <Form>
             <Grid container rowSpacing={2}>
               {/* Gender */}
@@ -49,6 +71,7 @@ const EvalulateForm = () => {
                     label="Gender"
                     onChange={(e) => setFieldValue("gender", e.target.value)}
                     fullWidth
+                    error={!!(errors.gender && touched.gender)}
                   >
                     <MenuItem value={-1}>
                       <em>Not specified</em>
@@ -67,6 +90,8 @@ const EvalulateForm = () => {
                   value={values.age}
                   onChange={handleChange("age")}
                   fullWidth
+                  error={!!(errors.age && touched.age)}
+                  helperText={errors.age}
                 />
               </Grid>
               {/* Education */}
@@ -80,6 +105,7 @@ const EvalulateForm = () => {
                     label="Education"
                     onChange={(e) => setFieldValue("education", e.target.value)}
                     fullWidth
+                    error={!!(errors.education && touched.education)}
                   >
                     <MenuItem value={-1}>
                       <em>Not specified</em>
@@ -102,6 +128,7 @@ const EvalulateForm = () => {
                     label="Tobacco Smoker"
                     onChange={(e) => setFieldValue("smoker", e.target.value)}
                     fullWidth
+                    error={!!(errors.smoker && touched.smoker)}
                   >
                     <MenuItem value={-1}>
                       <em>Not specified</em>
@@ -120,6 +147,8 @@ const EvalulateForm = () => {
                   value={values.cigs}
                   onChange={handleChange("cigs")}
                   fullWidth
+                  error={!!(errors.cigs && touched.cigs)}
+                  helperText={errors.cigs}
                 />
               </Grid>
               {/* BP Meds */}
@@ -135,6 +164,7 @@ const EvalulateForm = () => {
                     label="Blood pressure medication"
                     onChange={(e) => setFieldValue("bpMeds", e.target.value)}
                     fullWidth
+                    error={!!(errors.bpMeds && touched.bpMeds)}
                   >
                     <MenuItem value={-1}>
                       <em>Not specified</em>
@@ -155,6 +185,7 @@ const EvalulateForm = () => {
                     label="Previous stroke"
                     onChange={(e) => setFieldValue("stroke", e.target.value)}
                     fullWidth
+                    error={!!(errors.stroke && touched.stroke)}
                   >
                     <MenuItem value={-1}>
                       <em>Not specified</em>
@@ -177,6 +208,7 @@ const EvalulateForm = () => {
                     label="Stress (hypertensive)"
                     onChange={(e) => setFieldValue("stress", e.target.value)}
                     fullWidth
+                    error={!!(errors.stress && touched.stress)}
                   >
                     <MenuItem value={-1}>
                       <em>Not specified</em>
@@ -197,6 +229,7 @@ const EvalulateForm = () => {
                     label="Diabetes"
                     onChange={(e) => setFieldValue("diabetes", e.target.value)}
                     fullWidth
+                    error={!!(errors.diabetes && touched.diabetes)}
                   >
                     <MenuItem value={-1}>
                       <em>Not specified</em>
@@ -215,6 +248,8 @@ const EvalulateForm = () => {
                   value={values.cholesterol}
                   onChange={handleChange("cholesterol")}
                   fullWidth
+                  error={!!(errors.cholesterol && touched.cholesterol)}
+                  helperText={errors.cholesterol}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">mg/dL</InputAdornment>
@@ -231,6 +266,8 @@ const EvalulateForm = () => {
                   value={values.sysbp}
                   onChange={handleChange("sysbp")}
                   fullWidth
+                  error={!!(errors.sysbp && touched.sysbp)}
+                  helperText={errors.sysbp}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">mm Hg</InputAdornment>
@@ -247,6 +284,8 @@ const EvalulateForm = () => {
                   value={values.diabp}
                   onChange={handleChange("diabp")}
                   fullWidth
+                  error={!!(errors.diabp && touched.diabp)}
+                  helperText={errors.diabp}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">mm Hg</InputAdornment>
@@ -263,6 +302,8 @@ const EvalulateForm = () => {
                   value={values.bmi}
                   onChange={handleChange("bmi")}
                   fullWidth
+                  error={!!(errors.bmi && touched.bmi)}
+                  helperText={errors.bmi}
                 />
               </Grid>
               {/* Avg heart rate */}
@@ -274,6 +315,8 @@ const EvalulateForm = () => {
                   value={values.heartRate}
                   onChange={handleChange("heartRate")}
                   fullWidth
+                  error={!!(errors.heartRate && touched.heartRate)}
+                  helperText={errors.heartRate}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">BPM</InputAdornment>
