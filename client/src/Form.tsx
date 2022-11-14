@@ -45,10 +45,10 @@ const EvalulateForm = () => {
         values,
       })
       .then((res) => {
-        console.log(res.data.output);
         setOutput(res.data.output);
       })
       .catch((err) => {
+        setOutput("There was an internal server error. Please try again.");
         console.error(err);
       });
   };
