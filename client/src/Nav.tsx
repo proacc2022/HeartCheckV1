@@ -112,9 +112,8 @@ function Nav() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navs.map(({ title, url }) => (
-              <Link to={url} style={{ textDecoration: "none" }}>
+              <Link to={url} key={title} style={{ textDecoration: "none" }}>
                 <Button
-                  key={title}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
