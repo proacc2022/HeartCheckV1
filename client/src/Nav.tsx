@@ -10,8 +10,12 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
+import { Link } from "react-router-dom";
 
-const pages = ["Evalulate", "How to read your results", "How our model works"];
+const navs = [
+  { title: "How our model works", url: "/about" },
+  { title: "How to read your results", url: "/understand" },
+];
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -78,9 +82,11 @@ function Nav() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {navs.map(({ title, url }) => (
+                <MenuItem key={title} onClick={handleCloseNavMenu}>
+                  <Link to={url} style={{ textDecoration: "none" }}>
+                    <Typography textAlign="center">{title}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -105,14 +111,16 @@ function Nav() {
             StoneHeart
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+            {navs.map(({ title, url }) => (
+              <Link to={url} style={{ textDecoration: "none" }}>
+                <Button
+                  key={title}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {title}
+                </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>
