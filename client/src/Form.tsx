@@ -32,6 +32,10 @@ const schema = object({
   heartRate: number().required("Required").positive("Must be positive number"),
 });
 
+const onSubmit = (values: any) => {
+  console.log(values);
+};
+
 const EvalulateForm = () => {
   return (
     <div>
@@ -52,9 +56,7 @@ const EvalulateForm = () => {
           bmi: undefined,
           heartRate: undefined,
         }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={onSubmit}
         validationSchema={schema}
       >
         {({ values, handleChange, setFieldValue, errors, touched }) => (
