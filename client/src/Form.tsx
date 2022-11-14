@@ -12,6 +12,7 @@ import { Formik } from "formik";
 import { Form } from "formik";
 import SendIcon from "@mui/icons-material/Send";
 import { object, number } from "yup";
+import axios from "axios";
 
 const schema = object({
   gender: number().required("Required").integer().moreThan(-1),
@@ -34,6 +35,16 @@ const schema = object({
 
 const onSubmit = (values: any) => {
   console.log(values);
+  axios
+    .post("/predict", {
+      values,
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 const EvalulateForm = () => {
@@ -55,6 +66,7 @@ const EvalulateForm = () => {
           diabp: undefined,
           bmi: undefined,
           heartRate: undefined,
+          glucose: undefined,
         }}
         onSubmit={onSubmit}
         validationSchema={schema}
@@ -322,6 +334,24 @@ const EvalulateForm = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">BPM</InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              {/* Gluclose */}
+              <Grid item xs={12}>
+                <TextField
+                  id="glucose-input"
+                  label="Average glucose level"
+                  variant="outlined"
+                  value={values.heartRate}
+                  onChange={handleChange("glucose")}
+                  fullWidth
+                  error={!!(errors.glucose && touched.glucose)}
+                  helperText={errors.glucose}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">mg/dL</InputAdornment>
                     ),
                   }}
                 />
