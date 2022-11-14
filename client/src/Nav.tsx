@@ -83,10 +83,13 @@ function Nav() {
               }}
             >
               {navs.map(({ title, url }) => (
-                <MenuItem key={title} onClick={handleCloseNavMenu}>
-                  <Link to={url} style={{ textDecoration: "none" }}>
-                    <Typography textAlign="center">{title}</Typography>
-                  </Link>
+                <MenuItem
+                  component={Link}
+                  to={url}
+                  key={title}
+                  onClick={handleCloseNavMenu}
+                >
+                  <Typography textAlign="center">{title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -98,7 +101,7 @@ function Nav() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -112,14 +115,15 @@ function Nav() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navs.map(({ title, url }) => (
-              <Link to={url} key={title} style={{ textDecoration: "none" }}>
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {title}
-                </Button>
-              </Link>
+              <Button
+                component={Link}
+                to={url}
+                key={title}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {title}
+              </Button>
             ))}
           </Box>
         </Toolbar>
